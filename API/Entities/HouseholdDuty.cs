@@ -10,6 +10,7 @@ public class HouseholdDuty
     /// Number of days between duty repetition
     /// </summary>
     public required int Frequency { get; set; }
+    public DateTime LastTimeDone { get; set; }
     public int? RoomId { get; set; }
     public Room? Room { get; set; }
     public required int HomeId { get; set; }

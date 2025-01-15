@@ -1,0 +1,6 @@
+<div class="container white rounded p-5">
+    <button type="button" class="btn btn-primary me-2 text-uppercase">+ Добавить дело</button>
+    @for (duty of duties; track duty.id) {
+        <div>{{duty.name}}</div>
+    }
+</div>

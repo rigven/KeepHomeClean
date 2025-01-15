@@ -1,0 +1,41 @@
+<div class="container white position-absolute top-50 start-50 translate-middle py-4 rounded">
+    <h3 class="text-center mb-4">Регистрация</h3>
+    <form [formGroup]="registerForm" class="d-flex flex-column align-items-center">
+        <div class="input">
+            <label>Ваше публичное имя</label>
+            <input 
+                [class.is-invalid]="registerForm.controls['userName'].touched && registerForm.controls['userName'].invalid"
+                class="form-control mb-2" 
+                type="text" 
+                placeholder="Логин"
+                formControlName="userName">
+        </div>
+        <div class="input">
+            <label>Ваше имя внутри вашего дома</label>
+            <input 
+                [class.is-invalid]="registerForm.controls['knownAs'].touched && registerForm.controls['knownAs'].invalid"
+                class="form-control mb-2" 
+                type="text" 
+                placeholder="Имя"
+                formControlName="knownAs">
+        </div>
+        <input 
+            [class.is-invalid]="registerForm.controls['password'].touched && registerForm.controls['password'].invalid"
+            class="form-control input my-2" 
+            type="password" 
+            placeholder="Пароль"
+            formControlName="password">
+        <input 
+            [class.is-invalid]="registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].invalid"
+            class="form-control input my-2" 
+            type="password" 
+            placeholder="Повтор пароля"
+            formControlName="confirmPassword">
+        <button [disabled]="!registerForm.valid" type="submit" class="btn btn-primary mt-4 text-uppercase" (click)="register()">Зарегистрироваться</button>
+        <div *ngIf="registerForm.controls['userName'].touched && registerForm.controls['userName'].hasError('required')" class="invalid-message text-danger">Введите логин</div>
+        <div *ngIf="registerForm.controls['knownAs'].touched && registerForm.controls['knownAs'].hasError('required')" class="invalid-message text-danger">Введите имя</div>
+        <div *ngIf="registerForm.controls['password'].touched && (registerForm.controls['password'].hasError('minlength') || registerForm.controls['password'].hasError('required'))" class="invalid-message text-danger">Пароль должен быть длиннее 8 символов</div>
+        <div *ngIf="registerForm.controls['password'].touched && (registerForm.controls['password'].hasError('minlength') || registerForm.controls['password'].hasError('passwordRegex'))" class="invalid-message text-danger text-center">Пароль должен содержать строчные буквы, прописные буквы и цифры</div>
+        <div *ngIf="registerForm.controls['confirmPassword'].touched && (registerForm.controls['confirmPassword'].hasError('isMatching') || registerForm.controls['confirmPassword'].hasError('required'))" class="invalid-message text-danger">Пароли должны совпадать</div>
+    </form>
+</div>

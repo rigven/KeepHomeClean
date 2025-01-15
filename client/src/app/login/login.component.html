@@ -1,0 +1,27 @@
+<div class="container white position-absolute top-50 start-50 translate-middle py-4 rounded">
+    <h3 class="text-center mb-4">Вход</h3>
+    <form #loginForm="ngForm" class="d-flex flex-column align-items-center">
+        <div class="input">
+            <input 
+                name="userName"
+                [(ngModel)]="userName"
+                class="form-control mb-2" 
+                type="text" 
+                placeholder="Логин"
+                required>
+        </div>
+        <div class="input">
+            <input 
+                name="password"
+                [(ngModel)]="password"
+                class="form-control mb-2" 
+                type="password" 
+                placeholder="Пароль"
+                required>
+        </div>
+        <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary mt-4 text-uppercase" (click)="login()">Войти</button>
+        <div *ngIf="loginForm.controls['userName']?.touched && loginForm.controls['userName']?.hasError('required')" class="invalid-message text-danger">Введите логин</div>
+        <div *ngIf="loginForm.controls['password']?.touched && loginForm.controls['password']?.hasError('required')" class="invalid-message text-danger">Введите пароль</div>
+
+    </form>
+</div>
