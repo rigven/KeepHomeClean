@@ -2,10 +2,10 @@
 
 $brand-theme-colors: (
   "primary": #417B51,
-  "secondary": #aa96da,
+  "secondary": #767c7a,
   "success": #7BB368,
-  "danger": #9F5332,
-  "warning": #ffffd2,
+  "danger": #9f3932,
+  "warning": #ebe03f,
   "info": #96a9da,
 );
 
@@ -20,3 +20,6 @@ $danger:    map.get($brand-theme-colors, "danger");
 
 html, body { background-color: #E9E5E1 }
 .white { background-color: white; }
+.shadow {
+  box-shadow: 0 0px 10px 0px #BDB6AE;
+}

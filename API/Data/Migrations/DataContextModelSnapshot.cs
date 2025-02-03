@@ -141,7 +141,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Homes");
+                    b.ToTable("Homes", (string)null);
                 });
 
             modelBuilder.Entity("API.Entities.HouseholdDuty", b =>
@@ -172,7 +172,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("HouseholdDuties");
+                    b.ToTable("HouseholdDuties", (string)null);
                 });
 
             modelBuilder.Entity("API.Entities.Room", b =>
@@ -192,7 +192,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("HomeId");
 
-                    b.ToTable("Rooms");
+                    b.ToTable("Rooms", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

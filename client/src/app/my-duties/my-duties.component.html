@@ -1,6 +1,35 @@
-<div class="container white rounded p-5">
-    <button type="button" class="btn btn-primary me-2 text-uppercase">+ Добавить дело</button>
-    @for (duty of duties; track duty.id) {
-        <div>{{duty.name}}</div>
+<div class="container white rounded p-5 shadow">
+    <button type="button" class="btn btn-outline-primary me-2 text-uppercase mb-3" (click)="openAddDutyModal()">+ Добавить дело</button>
+    @for (duty of duties(); track duty.id) {
+        <div class="my-1 p-2">
+            <div [ngClass]="{'text-danger': duty.daysLeft===0}" class="fs-5">
+                {{duty.name}} 
+            </div>
+            <div class="row">
+                <div class="col-10 d-flex flex-column justify-content-center">  
+                    <progressbar 
+                        [value]="duty.daysLeft/duty.frequency * 100" 
+                        [type]="duty.zone" 
+                        style="height: 20px;" 
+                        class="position-relative"
+                        [ngClass]="{'bg-danger': duty.frequency-duty.daysGone <= 0}">
+                            {{duty.daysLeft}}
+                    </progressbar>
+                    <span *ngIf="duty.frequency-duty.daysGone <= 0" class="text-danger">дней просрочено: {{(duty.frequency-duty.daysGone)*-1}}</span>
+                </div>
+                <div class="col-2">
+                    <button class="duty-button btn btn-outline-primary" (click)="markAsDone(duty.id)" [disabled]="duty.daysGone === 0">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button class="duty-button btn btn-outline-secondary" (click)="openEditDutyModal(duty)">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button class="duty-button btn btn-outline-danger" (click)="deleteDuty(duty.id)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     }
 </div>
+

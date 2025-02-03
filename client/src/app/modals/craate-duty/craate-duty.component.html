@@ -1,0 +1,35 @@
+<div class="modal-header d-flex">
+    <h4 class="modal-title mx-auto position-relative">Добавить дело</h4>
+    <button type="button" class="btn-close close position-absolute" style="right: 20px;" aria-label="Закрыть" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="d-flex justify-content-center p-3">
+    <form #createDutyForm="ngForm" id="createDutyForm" class="d-flex justify-content-center flex-column">
+        <div class="input">
+            <label>Название</label>
+            <input
+                name="name"
+                [(ngModel)]="duty.name"
+                class="form-control mb-2" 
+                type="text"
+                required>
+        </div>
+        <div class="input">
+            <label>Время отката <font color="grey">(дней)</font></label>
+            <input 
+                name="frequency"
+                [(ngModel)]="duty.frequency"
+                class="form-control mb-2" 
+                type="number" 
+                placeholder="Период"
+                required>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer flex-column align-items-center">
+    <button [disabled]="!createDutyForm.valid" type="submit" form="createDutyForm" class="btn btn-primary mx-auto" (click)="create()">Создать</button>
+    <div *ngIf="createDutyForm.controls['name']?.touched && createDutyForm.controls['name']?.hasError('required')" class="invalid-message text-danger my-0">Введите название</div>
+    <div *ngIf="createDutyForm.controls['frequency']?.touched && createDutyForm.controls['frequency']?.hasError('required')" class="invalid-message text-danger my-0">Введите время отката</div>
+</div>

@@ -1,6 +1,8 @@
 using System;
+using System.Threading.Tasks;
 using API.Entities;
 using API.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Data;
 
@@ -11,8 +13,17 @@ public class RoomRepository(DataContext dataContext) : IRoomRepository
         dataContext.Rooms.Add(room);
     }
 
-    public void DeleteRoom(Room room)
+    public async Task DeleteRoomAsync(int id)
     {
-        dataContext.Rooms.Remove(room);
+        Room? room = await dataContext.Rooms.Where(r => r.Id == id).FirstOrDefaultAsync();
+        if (room != null)
+            dataContext.Rooms.Remove(room);
+        else
+            throw new Exception("Cannot fond room with the required id");
+    }
+
+    public async Task<IEnumerable<Room>> GetRoomsForHomeAsync(int homeId)
+    {
+        return await dataContext.Rooms.Where(r => r.HomeId == homeId).ToListAsync();
     }
 }

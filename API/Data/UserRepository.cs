@@ -16,6 +16,7 @@ public class UserRepository(DataContext context) : IUserRepository
     {
         return await context.Users
             .Include(u => u.Home)
+            .Include(u => u.Home.Rooms)
             .SingleOrDefaultAsync(u => u.NormalizedUserName == userName.ToUpper());
     }
 

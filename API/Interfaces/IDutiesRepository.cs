@@ -6,8 +6,9 @@ namespace API.Interfaces;
 
 public interface IDutiesRepository
 {
-    public void AddDuty(HouseholdDuty duty);
-    public void DeleteDuty(HouseholdDuty duty);
+    Task<HouseholdDuty?> GetDutyById(int dutyId);
+    void AddDuty(HouseholdDuty duty);
+    void DeleteDuty(HouseholdDuty duty);
     Task<IEnumerable<DutyDto>> GetDutiesDtosForHomeAsync(int homeId);
     
 }

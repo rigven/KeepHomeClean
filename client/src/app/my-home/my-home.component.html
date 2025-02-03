@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row justify-content-around">
+        <div class="white rounded p-5 shadow col-6">
+            <h3 class="text-center">Жители</h3>
+        </div>
+        <div class="white rounded p-5 shadow col-5">
+            <h3 class="text-center">Комнаты</h3>
+            <form #addRoomForm="ngForm" class="row mb-2" (ngSubmit)="addRoom()">
+                <input 
+                    name="newRoomName"
+                    [(ngModel)]="newRoomName"
+                    class="form-control me-3 col" 
+                    type="text" 
+                    placeholder="Добавить комнату..."
+                    required>
+                <button type="submit" [disabled]="!addRoomForm.valid" class="btn btn-outline-primary col-1"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            </form>
+            @for (room of rooms(); track room.id) {
+                <div>
+                    <button class="duty-button btn btn-outline-danger" (click)="deleteRoom(room.id)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                    <button class="duty-button btn btn-outline-secondary" (click)="editRoom(room.id)">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    {{room.name}}
+                </div>
+            }
+        </div>
+    </div>
+</div>
